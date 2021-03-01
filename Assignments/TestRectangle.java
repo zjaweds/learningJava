@@ -1,53 +1,70 @@
 import java.lang.*;
 import java.util.*;
+
 class Rectangle{
-	Point p1,p2,p3,p4;
-	static class Point{
+	class Point{
 		double x,y;
-		public Point(double x,double y){
-			this.x=x;
-			this.y=y;
+		public Point(){
+			this.x=0;
+			this.y=0;
 		}
 	}
-	Rectangle(Point p1,Point p2,Point p3,Point p4){
+	Point p1,p2,p3,p4;
+	Rectangle(){
+		Point p1=new Point();
+		Point p2=new Point();
+		Point p3=new Point();
+		Point p4=new Point();
 		set(p1,p2,p3,p4);
 	}
 	void set(Point p1,Point p2,Point p3,Point p4){
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter x: ");
-		p1.x = sc.nextDouble();
-		System.out.println("Enter y: ");
-		p1.y = sc.nextDouble();
-		System.out.println("Enter x: ");
-		p2.x = sc.nextDouble();
-		System.out.println("Enter y: ");
-		p2.y = sc.nextDouble();
-		System.out.println("Enter x: ");
-		p3.x = sc.nextDouble();
-		System.out.println("Enter y: ");
-		p3.y = sc.nextDouble();
-		System.out.println("Enter x: ");
-		p4.x = sc.nextDouble();
-		System.out.println("Enter y: ");
-		p4.y = sc.nextDouble();
-	}
-	if((p1.x>=0 && p1.x<=50) && (p1.y>=0 && p1.y<=50) && (p2.x>=0 && p2.x<=50)&& (p2.y>=0 && p2.y<=50)&&(p3.x>=0 && p3.x<=50)&&(p3.y>=0 && p3.y<=50)&&(p4.x>=0 && p4.x<=50)&&(p4.y>=0 && p4.y<=50)){	
-		System.out.println("\nCoordinates successfully assigned!!!");
-	}
-	else{
-		System.out.println("\nCoordinates not as expected (either not in 1st quadrant or greater than 50!!!");
-		System.exit(0);
+		p1.x= 0;
+		p1.y=2;
+		p2.x=4;
+		p2.y=2;
+		p3.x=4;
+		p3.y=7;
+		p4.x=0;
+		p4.y=7;
+		// System.out.println("Enter x for the first point: ");
+		// p1.x = sc.nextDouble();
+		// System.out.println("Enter y for the first point: ");
+		// p1.y = sc.nextDouble();
+		// System.out.println("Enter x for the second point: ");
+		// p2.x = sc.nextDouble();
+		// System.out.println("Enter y for the second point: ");
+		// p2.y = sc.nextDouble();
+		// System.out.println("Enter x for the third point: ");
+		// p3.x = sc.nextDouble();
+		// System.out.println("Enter y for the third point: ");
+		// p3.y = sc.nextDouble();
+		// System.out.println("Enter x for the fourth point: ");
+		// p4.x = sc.nextDouble();
+		// System.out.println("Enter y for the fourth point: ");
+		// p4.y = sc.nextDouble();
+		if((p1.x>=0 && p1.x<=50) && (p1.y>=0 && p1.y<=50) && (p2.x>=0 && p2.x<=50)&& (p2.y>=0 && p2.y<=50)&&(p3.x>=0 && p3.x<=50)&&(p3.y>=0 && p3.y<=50)&&(p4.x>=0 && p4.x<=50)&&(p4.y>=0 && p4.y<=50)){	
+			System.out.println("\nCoordinates successfully assigned!!!");
+		}
+		else{
+			System.out.println("\nCoordinates are either not in 1st quadrant or greater than 50!");
+			System.exit(0);
+		}
+		if(this.areFormingRectangle(p1,p2,p3,p4))
+			System.out.println("Forming a rectangle!");
+		else
+			System.out.println("Not forming a rectangle!");
 	}
 	double findDistance(Point p1,Point p2){
 		return (Math.sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)));
 	}
-	boolean isObeyingPythagorous(double p,double q,double r){
+	boolean areObeyingPythagorous(double p,double q,double r){
 		if(p*p+q*q==r*r || p*p==q*q+r*r || q*q==p*p+r*r)
 			return true;
 		else
 			return false;
 	}
-	boolean isFormingRectangle(Point A,Point B,Point C,Point D){
+	boolean areFormingRectangle(Point A,Point B,Point C,Point D){
 		Point points[];
 		points = new Point[4];
 		points[0].x=A.x;
@@ -68,7 +85,7 @@ class Rectangle{
 					if(findDistance(p,q)!=d2){
 						if((findDistance(p,q)!=d3) && (p.x!=q.x && p.y!=q.y)){
 							System.out.println("\nGiven coordinates can't form a rectangle!");
-							System.exit(0);
+							return false;
 						}
 						else
 							d3=findDistance(p,q);					
@@ -78,46 +95,20 @@ class Rectangle{
 				}
 				else
 					d1=findDistance(p,q);
-			}			
+			}
 		}
-		if(isObeyingPythagorous(d1,d2,d3)){
-			System.out.println("Yes they form a rectangle!");
+		if(areObeyingPythagorous(d1,d2,d3)){
+			System.out.println("Yes they are following Pythagorous theorem!");
 		}
+		else
+			return false;
+		return true;
 	}
-
-	// double getLength(){
-	// 	return x2-x1;
-	// }
-	// double getBreadth(){
-	// 	return y4-y1;
-	// }
-	// double perimeter(double l,double b){
-	// 	return (2*(l+b));
-	// }
-	// double area(double l,double b){
-	// 	return l*b;
-	// }
-	// boolean isSquare(double l,double b){
-	// 	if( l==b )
-	// 		return true;
-	// 	else
-	// 		return false;
-	// }
 }
 class TestRectangle{
 	public static void main(String args[]){
-		Point A=new Point(2,3);
+		// Point A=new Point(2,3);
+		Rectangle rec =new Rectangle();
 		System.out.println("Program executed!");
-		// Rectangle rec=new Rectangle(4,6,3,1, 0,2,5,3);
-		// double length=rec.getLength()>rec.getBreadth()?rec.getLength():rec.getBreadth();
-		// double breadth=rec.getLength()<rec.getBreadth()?rec.getLength():rec.getBreadth();
-		// System.out.println("Length:"+ length);
-		// System.out.println("Breadth:"+breadth);
-		// System.out.println("Perimeter: " + rec.perimeter(length,breadth) + " sq.unit" );
-		// System.out.println("Area: " + rec.area(length,breadth) + " sq.unit");
-		// if(rec.isSquare(length,breadth))
-		// 	System.out.println("\nThe given coordinates form a square.");
-		// else
-		// 	System.out.println("\nThe given coordinates don't form a square.");
 	}
 }
