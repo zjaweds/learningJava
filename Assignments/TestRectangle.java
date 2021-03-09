@@ -5,44 +5,55 @@ class Rectangle{
 	class Point{
 		double x,y;
 		public Point(){
-			this.x=0;
-			this.y=0;
+			x=0;
+			y=0;
 		}
 	}
 	Point p1,p2,p3,p4;
 	Rectangle(){
 		Point p1=new Point();
+		p1.x= 0;
+		p1.y=2;
 		Point p2=new Point();
+		p2.x=4;
+		p2.y=2;
+
 		Point p3=new Point();
+		p3.x=4;
+		p3.y=7;
+
 		Point p4=new Point();
-		set(p1,p2,p3,p4);
+		p4.x=0;
+		p4.y=7;
+
+		this.set(p1,p2,p3,p4);
 	}
 	void set(Point p1,Point p2,Point p3,Point p4){
 		Scanner sc = new Scanner(System.in);
-		p1.x= 0;
-		p1.y=2;
-		p2.x=4;
-		p2.y=2;
-		p3.x=4;
-		p3.y=7;
-		p4.x=0;
-		p4.y=7;
-		// System.out.println("Enter x for the first point: ");
-		// p1.x = sc.nextDouble();
-		// System.out.println("Enter y for the first point: ");
-		// p1.y = sc.nextDouble();
-		// System.out.println("Enter x for the second point: ");
-		// p2.x = sc.nextDouble();
-		// System.out.println("Enter y for the second point: ");
-		// p2.y = sc.nextDouble();
-		// System.out.println("Enter x for the third point: ");
-		// p3.x = sc.nextDouble();
-		// System.out.println("Enter y for the third point: ");
-		// p3.y = sc.nextDouble();
-		// System.out.println("Enter x for the fourth point: ");
-		// p4.x = sc.nextDouble();
-		// System.out.println("Enter y for the fourth point: ");
-		// p4.y = sc.nextDouble();
+		// p1.x= 0;
+		// p1.y=2;
+		// p2.x=4;
+		// p2.y=2;
+		// p3.x=4;
+		// p3.y=7;
+		// p4.x=0;
+		// p4.y=7;
+		System.out.println("Enter x for the first point: ");
+		p1.x = sc.nextDouble();
+		System.out.println("Enter y for the first point: ");
+		p1.y = sc.nextDouble();
+		System.out.println("Enter x for the second point: ");
+		p2.x = sc.nextDouble();
+		System.out.println("Enter y for the second point: ");
+		p2.y = sc.nextDouble();
+		System.out.println("Enter x for the third point: ");
+		p3.x = sc.nextDouble();
+		System.out.println("Enter y for the third point: ");
+		p3.y = sc.nextDouble();
+		System.out.println("Enter x for the fourth point: ");
+		p4.x = sc.nextDouble();
+		System.out.println("Enter y for the fourth point: ");
+		p4.y = sc.nextDouble();
 		if((p1.x>=0 && p1.x<=50) && (p1.y>=0 && p1.y<=50) && (p2.x>=0 && p2.x<=50)&& (p2.y>=0 && p2.y<=50)&&(p3.x>=0 && p3.x<=50)&&(p3.y>=0 && p3.y<=50)&&(p4.x>=0 && p4.x<=50)&&(p4.y>=0 && p4.y<=50)){	
 			System.out.println("\nCoordinates successfully assigned!!!");
 		}
@@ -64,17 +75,29 @@ class Rectangle{
 		else
 			return false;
 	}
+	double findLength(){
+		return findDistance(p1,p2)>findDistance(p2,p3)?findDistance(p1,p2):findDistance(p2,p3);
+	}
+	double findBreadth(){
+		return findDistance(p1,p2)<findDistance(p2,p3)?findDistance(p1,p2):findDistance(p2,p3);
+	}
+	double findPerimeter(){
+		return 2*(findBreadth()+findLength());
+	}
+	double findArea(){
+		return (findBreadth()*findLength());
+	}
 	boolean areFormingRectangle(Point A,Point B,Point C,Point D){
 		Point points[];
 		points = new Point[4];
 		points[0].x=A.x;
 		points[0].y=A.y;
 		points[1].x=B.x;
-		points[1].x=B.x;
+		points[1].y=B.y;
 		points[2].x=C.x;
-		points[2].x=C.x;
+		points[2].y=C.y;
 		points[3].x=D.x;
-		points[3].x=D.x;
+		points[3].y=D.y;
 		double d1,d2,d3;
 		d1= findDistance(points[0],points[1]);
 		d2= findDistance(points[0],points[2]);
@@ -107,7 +130,6 @@ class Rectangle{
 }
 class TestRectangle{
 	public static void main(String args[]){
-		// Point A=new Point(2,3);
 		Rectangle rec =new Rectangle();
 		System.out.println("Program executed!");
 	}
