@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-class Thread1 extends Thread{
+class ThreadForPrimes extends Thread{
     ArrayList <Integer> l1 = new ArrayList();
-    public Thread1(ArrayList l){
+    public ThreadForPrimes(ArrayList l){
         this.l1=l;
     }
     public void run(){
@@ -27,9 +27,9 @@ class Thread1 extends Thread{
     }
 }
 
-class Thread2 extends Thread{
+class ThreadForFibonacci extends Thread{
     ArrayList <Integer> l1 = new ArrayList();
-    public Thread2(ArrayList l){
+    public ThreadForFibonacci(ArrayList l){
         this.l1=l;
     }
     public void run(){
@@ -55,14 +55,14 @@ class MultiThreadDemo{
     public static void main(String [] ar){
         ArrayList <Integer> a = new ArrayList();
         ArrayList <Integer> b = new ArrayList();
-        Thread1 t1 = new Thread1(a);
+        ThreadForPrimes t1 = new ThreadForPrimes(a);
         t1.start();
         try{
             t1.join();
         }
         catch(Exception e){}
         t1.display();
-        Thread2 t2 = new Thread2(b);
+        ThreadForFibonacci t2 = new ThreadForFibonacci(b);
         t2.start();
         try{
             t2.join();
