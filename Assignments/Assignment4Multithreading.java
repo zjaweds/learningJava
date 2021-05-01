@@ -1,6 +1,6 @@
 import java.util.*;
 import java.lang.*;
-
+import java.util.Random;
 
 class KeySearcher extends Thread{
     public void findKey(int key,int A[], int start, int end){
@@ -23,8 +23,12 @@ class Assignment4Multithreading{
         System.out.println("Enter the size of the Array: ");
         Scanner sc = new Scanner(System.in);
         int arraySize = sc.nextInt();
-        int A[] = new int [arraySize];
-
+        long A[] = new long [arraySize];
+        Random randomNumber = new Random();
+        for(int i=0;i<arraySize;i++){
+            A[i]=(long)(randomNumber.nextDouble()*10000000000L);
+            System.out.print(A[i]+" ");
+        }
         KeySearcher k= new KeySearcher();
         k.start();
         try{
