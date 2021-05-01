@@ -9,7 +9,7 @@ class KeySearcher extends Thread{
     //findKey definition
     public boolean findKey(long key,long A[], int start, int end){
         int i=0;
-        while(start<=end){
+        while(start<end){
             if(A[i]==key)
                 return true;
             i++;
@@ -23,9 +23,10 @@ class KeySearcher extends Thread{
         A =A;
         this.key = key;
         this.start = start;
+        this.end = end;
     }
     public void run(){
-        System.out.print(findKey(key,A,0,5));
+        System.out.print(findKey(key,A,start,end));
     }
 }
 
