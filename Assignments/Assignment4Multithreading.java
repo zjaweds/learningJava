@@ -3,6 +3,7 @@ import java.lang.*;
 import java.util.Random;
 
 class KeySearcher extends Thread{
+    //Constructor is required for KeySearcher(int A[])
     public void findKey(int key,int A[], int start, int end){
         int i=0;
         while(start<=end){
@@ -34,7 +35,7 @@ class Assignment4Multithreading{
         int numberOfThreads = sc.nextInt();
         if(arraySize%numberOfThreads==0){
             int lengthOfSubArray = arraySize%numberOfThreads;
-            for(int j=0; j<lengthOfSubArray; j++){
+            for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher();
                 k.start();
                 try{
@@ -45,7 +46,7 @@ class Assignment4Multithreading{
         }
         else{
             int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
-            for(int j=0; j<lengthOfSubArray; j++){
+            for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher();
                 k.start();
                 try{
