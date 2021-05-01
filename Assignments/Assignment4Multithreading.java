@@ -8,6 +8,7 @@ class KeySearcher extends Thread{
         while(start<=end){
             if(A[i]==key)
                 return;
+            start++;
         }
         return;
     }
@@ -29,11 +30,29 @@ class Assignment4Multithreading{
             A[i]=(long)(randomNumber.nextDouble()*10000000000L);
             System.out.print(A[i]+" ");
         }
-        KeySearcher k= new KeySearcher();
-        k.start();
-        try{
-            k.join();
+        System.out.print("\nEnter the number of threads: ");
+        int numberOfThreads = sc.nextInt();
+        if(arraySize%numberOfThreads==0){
+            int lengthOfSubArray = arraySize%numberOfThreads;
+            for(int j=0; j<lengthOfSubArray; j++){
+                KeySearcher k= new KeySearcher();
+                k.start();
+                try{
+                    k.join();
+                }
+                catch(Exception e){}
+            }
         }
-        catch(Exception e){}
+        else{
+            int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
+            for(int j=0; j<lengthOfSubArray; j++){
+                KeySearcher k= new KeySearcher();
+                k.start();
+                try{
+                    k.join();
+                }
+                catch(Exception e){}
+            }   
+        }
     }
 }
