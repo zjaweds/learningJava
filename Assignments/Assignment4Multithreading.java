@@ -3,8 +3,11 @@ import java.lang.*;
 import java.util.Random;
 
 class KeySearcher extends Thread{
-    //Constructor is required for KeySearcher(int A[])
-    public boolean findKey(long key,int A[], int start, int end){
+    long A[];
+    long key;
+    int start,end;    
+    //findKey definition
+    public boolean findKey(long key,long A[], int start, int end){
         int i=0;
         while(start<=end){
             if(A[i]==key)
@@ -14,12 +17,15 @@ class KeySearcher extends Thread{
         }
         return false;
     }
+    
+    //Constructor is required for KeySearcher(int A[])
     public KeySearcher(long A[],int start, int end,long key){
-        
+        A =A;
+        this.key = key;
+        this.start = start;
     }
     public void run(){
-        int A[]= {2,3,4,5};
-        System.out.print(findKey(4,A,0,3));
+        System.out.print(findKey(key,A,0,5));
     }
 }
 
@@ -42,22 +48,28 @@ class Assignment4Multithreading{
             int lengthOfSubArray = arraySize%numberOfThreads;
             for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
+                long start = System.nanoTime( );
                 k.start();
                 try{
                     k.join();
                 }
                 catch(Exception e){}
+                long end = System.nanoTime( );
+                System.out.println(end - start);
             }
         }
         else{
             int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
             for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
+                long start = System.nanoTime( );
                 k.start();
                 try{
                     k.join();
                 }
                 catch(Exception e){}
+                long end = System.nanoTime( );
+                System.out.println(end - start);
             }   
         }
     }
