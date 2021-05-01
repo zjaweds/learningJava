@@ -4,22 +4,22 @@ import java.util.Random;
 
 class KeySearcher extends Thread{
     //Constructor is required for KeySearcher(int A[])
-    public void findKey(long key,int A[], int start, int end){
+    public boolean findKey(long key,int A[], int start, int end){
         int i=0;
         while(start<=end){
             if(A[i]==key)
-                return;
+                return true;
+            i++;
             start++;
         }
-        return;
+        return false;
     }
     public KeySearcher(long A[],int start, int end,long key){
         
     }
     public void run(){
         int A[]= {2,3,4,5};
-        findKey(4,A,0,3);
-        System.out.print("He.");
+        System.out.print(findKey(4,A,0,3));
     }
 }
 
