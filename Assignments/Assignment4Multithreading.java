@@ -4,7 +4,7 @@ import java.util.Random;
 
 class KeySearcher extends Thread{
     //Constructor is required for KeySearcher(int A[])
-    public void findKey(int key,int A[], int start, int end){
+    public void findKey(long key,int A[], int start, int end){
         int i=0;
         while(start<=end){
             if(A[i]==key)
@@ -13,9 +13,12 @@ class KeySearcher extends Thread{
         }
         return;
     }
+    public KeySearcher(long A[],int start, int end,long key){
+        
+    }
     public void run(){
         int A[]= {2,3,4,5};
-        // findKey(0,int [] A,0,0);
+        findKey(4,A,0,3);
         System.out.print("He.");
     }
 }
@@ -33,10 +36,12 @@ class Assignment4Multithreading{
         }
         System.out.print("\nEnter the number of threads: ");
         int numberOfThreads = sc.nextInt();
+        System.out.print("\nEnter the key: ");
+        long key = sc.nextLong();
         if(arraySize%numberOfThreads==0){
             int lengthOfSubArray = arraySize%numberOfThreads;
             for(int j=0; j<numberOfThreads; j++){
-                KeySearcher k= new KeySearcher();
+                KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
                 k.start();
                 try{
                     k.join();
@@ -47,7 +52,7 @@ class Assignment4Multithreading{
         else{
             int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
             for(int j=0; j<numberOfThreads; j++){
-                KeySearcher k= new KeySearcher();
+                KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
                 k.start();
                 try{
                     k.join();
