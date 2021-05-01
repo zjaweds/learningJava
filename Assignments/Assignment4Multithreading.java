@@ -26,7 +26,7 @@ class KeySearcher extends Thread{
         this.end = end;
     }
     public void run(){
-        System.out.print(findKey(key,A,start,end));
+        System.out.print(findKey(key,A,start,end)+" Time taken: ");
     }
 }
 
@@ -47,8 +47,11 @@ class Assignment4Multithreading{
         long key = sc.nextLong();
         if(arraySize%numberOfThreads==0){
             int lengthOfSubArray = arraySize%numberOfThreads;
+            int span=0;
+            int initial=0;
+            int terminal=0;
             for(int j=0; j<numberOfThreads; j++){
-                KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
+                KeySearcher k= new KeySearcher(A ,initial+span,terminal+span,key);
                 long start = System.nanoTime( );
                 k.start();
                 try{
@@ -57,12 +60,16 @@ class Assignment4Multithreading{
                 catch(Exception e){}
                 long end = System.nanoTime( );
                 System.out.println(end - start);
+                span+=lengthOfSubArray;
             }
         }
         else{
             int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
+            int span=0;
+            int initial=0;
+            int terminal=0;
             for(int j=0; j<numberOfThreads; j++){
-                KeySearcher k= new KeySearcher(A ,0,lengthOfSubArray,key);
+                KeySearcher k= new KeySearcher(A ,initial+span,terminal+span,key);
                 long start = System.nanoTime( );
                 k.start();
                 try{
@@ -71,6 +78,7 @@ class Assignment4Multithreading{
                 catch(Exception e){}
                 long end = System.nanoTime( );
                 System.out.println(end - start);
+                span+=lengthOfSubArray;
             }   
         }
     }
