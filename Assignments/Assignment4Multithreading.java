@@ -49,7 +49,7 @@ class Assignment4Multithreading{
             int lengthOfSubArray = arraySize%numberOfThreads;
             int span=0;
             int initial=0;
-            int terminal=0;
+            int terminal=lengthOfSubArray;
             for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher(A ,initial+span,terminal+span,key);
                 long start = System.nanoTime( );
@@ -67,7 +67,7 @@ class Assignment4Multithreading{
             int lengthOfSubArray = ((int)arraySize%numberOfThreads)+1;
             int span=0;
             int initial=0;
-            int terminal=0;
+            int terminal=lengthOfSubArray;
             for(int j=0; j<numberOfThreads; j++){
                 KeySearcher k= new KeySearcher(A ,initial+span,terminal+span,key);
                 long start = System.nanoTime( );
