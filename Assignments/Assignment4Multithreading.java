@@ -8,8 +8,8 @@ class KeySearcher extends Thread{
     int start,end;    
     //findKey definition
     public boolean findKey(long key,long A[], int start, int end){
-        int i=0;
-        while(start<end){
+        int i=start;
+        while(start<=end){
             if(A[i]==key)
                 return true;
             i++;
@@ -20,13 +20,13 @@ class KeySearcher extends Thread{
     
     //Constructor is required for KeySearcher(int A[])
     public KeySearcher(long A[],int start, int end,long key){
-        A =A;
+        this.A =A;
         this.key = key;
         this.start = start;
         this.end = end;
     }
-    public void run(){
-        System.out.print(findKey(key,A,start,end)+" Time taken: ");
+    synchronized public void run(){
+        System.out.print(findKey(key,A,start,end)+", Time taken: ");
     }
 }
 
@@ -37,10 +37,11 @@ class Assignment4Multithreading{
         int arraySize = sc.nextInt();
         long A[] = new long [arraySize];
         Random randomNumber = new Random();
+        //for fixing the range of random numbers
         long x = 100000L;
         long y = 999999999L;
+        //for fixing the range of random numbers
         for(int i=0;i<arraySize;i++){
-            // A[i]=(long)(randomNumber.nextDouble()*10000000000L);
             A[i] = x+((long)(randomNumber.nextDouble()*(y-x)));
             System.out.print(A[i]+" ");
         }
