@@ -37,8 +37,11 @@ class Assignment4Multithreading{
         int arraySize = sc.nextInt();
         long A[] = new long [arraySize];
         Random randomNumber = new Random();
+        long x = 100000L;
+        long y = 999999999L;
         for(int i=0;i<arraySize;i++){
-            A[i]=(long)(randomNumber.nextDouble()*10000000000L);
+            // A[i]=(long)(randomNumber.nextDouble()*10000000000L);
+            A[i] = x+((long)(randomNumber.nextDouble()*(y-x)));
             System.out.print(A[i]+" ");
         }
         System.out.print("\nEnter the number of threads: ");
