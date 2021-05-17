@@ -11,6 +11,26 @@ class Building{
     }
 }
 
+interface BuildingShape{
+    void getShape();
+}
+
+class HallShape implements BuildingShape{
+    public void getShape(){
+        System.out.println("What my shape is?");
+    }
+}
+
+abstract class ColourSpecs{
+    abstract void getColor();
+}
+
+class ColorOfHall extends ColourSpecs{
+    void getColor(){
+        System.out.println("What color do I have?");
+    }
+}
+
 class SeminarHall extends Building{
     public SeminarHall(){
         this.numberOfFloors=0;
@@ -23,12 +43,17 @@ class SeminarHall extends Building{
         System.out.println(this.numberOfLadders+" ladders.");
     }
 }
- class InheritanceDemo{
+
+class InheritanceDemo{
     public static void main(String a[]){
         SeminarHall seminarHall1 = new SeminarHall();
         seminarHall1.numberOfRooms=10;
         System.out.println("I'm from the seminar Hall.");
         System.out.println("My specifications:--- ");
         seminarHall1.findAttributes();
+        ColorOfHall hc = new ColorOfHall();
+        hc.getColor();
+        HallShape hs = new HallShape();
+        hs.getShape();
     }
  }
