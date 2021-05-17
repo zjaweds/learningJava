@@ -1,5 +1,8 @@
+import java.lang.String.*;
+import java.lang.String.concat.*;
+
 class Building{
-    int numberOfRooms;
+    public int numberOfRooms=20;
     int numberOfLadders;
     int numberOfElevators;
     int numberOfPassages;
@@ -44,6 +47,34 @@ class SeminarHall extends Building{
     }
 }
 
+class ElementPrinter{
+    static void printSequence(){
+        double ar[] = new double[10];
+        for(int i=1; i<ar.length; i++){
+            ar[i]= (i*i+i)/i;
+        }
+        System.out.println("------------------Array elements------------------");
+        for(double x:ar){
+            System.out.println(x);
+        }
+        System.out.println("------------------Array elements------------------");
+    }
+}
+
+class CharPrinter{
+    void printCharacters(){
+        String str = new String();
+        for(int i=65; i<150;i++){
+            str[i] =((char)i);
+        }
+        System.out.println("------------------String elements------------------");
+        for(int c;c<=str.length();c++){
+            System.out.println(str.charAt(c));
+        }
+        System.out.println("------------------String elements------------------");
+    }
+}
+
 class InheritanceDemo{
     public static void main(String a[]){
         SeminarHall seminarHall1 = new SeminarHall();
@@ -55,5 +86,8 @@ class InheritanceDemo{
         hc.getColor();
         HallShape hs = new HallShape();
         hs.getShape();
+        ElementPrinter.printSequence();
+        CharPrinter cp = new CharPrinter();
+        cp.printCharacters();
     }
  }
