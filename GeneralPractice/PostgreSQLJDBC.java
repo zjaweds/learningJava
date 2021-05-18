@@ -18,11 +18,9 @@ public class PostgreSQLJDBC {
             " AGE INT NOT NULL, " +
             " ADDRESS CHAR(50), " +
             " SALARY REAL)";
-            String s1 = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (31, 'Teddy', 23, 'Norway', 20000.00);";
-            // String s2 = "COMMIT;";
-
-         // stmt.executeUpdate(sql);
-         stmt.close();
+            
+            String s1 = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (321, 'Teddy', 23, 'Norway', 20000.00);";
+            stmt.close();
          PreparedStatement ps = c.prepareStatement(s1);
          ps.executeUpdate();
          ps.close();

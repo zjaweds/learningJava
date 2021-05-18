@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 
 class LongestPalindromeFinder {
-    static void printSubStr(String str, int low, int high){
+    static void printSubString(String str, int low, int high){
         System.out.println(str.substring(low, high + 1));
     }
     static int longestPalSubstr(String str){
@@ -32,7 +32,7 @@ class LongestPalindromeFinder {
             }
         }
         System.out.print("Longest palindrome substring is: ");
-        printSubStr(str, start,start + maxLength - 1);
+        printSubString(str, start,start + maxLength - 1);
         return maxLength;    
     }
     static boolean isValid(String str){

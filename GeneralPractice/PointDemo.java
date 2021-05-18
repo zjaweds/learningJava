@@ -7,6 +7,10 @@ class Point{
         this.x=x;
         this.y=y;
     }
+    public Point(Point P){
+        x = P.x;
+        y = P.y;
+    }
     public void display(){
         System.out.println("("+ x +","+ y + ")");
     }
@@ -28,9 +32,17 @@ class TestingPoint{
     public static void main(String a[]){
         Point P = new Point(2,3);
         Point Q = new Point(5,6);
+        Point Z = new Point(Q);
+        Point A =null;
+        A=Q;
+        A.display();
+        System.out.println("\n");
         P.display();
         Q.display();
         P.distanceBetween(Q);
+        Z.display();
         System.out.println("Distance between the Points P and Q is: " + Point.distance(P,Q));
+        System.out.println("Equality of Points: " + (Z.equals(Q)));
+        System.out.println("Equality of Points: " + (Q==Q));
     }
 }

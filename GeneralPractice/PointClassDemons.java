@@ -4,7 +4,7 @@ public class Point{
     private int x,y;
 
     public static Point ORIGIN = new Point(0,0);
-    public static Point(int x, int y){
+    public Point(int x, int y){
         this.x=x;
         this.y=y;
     }
