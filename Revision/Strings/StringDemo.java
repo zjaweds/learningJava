@@ -39,7 +39,7 @@ class StringObjects{
         String s2="ALPHA is o";
         System.out.println("\n s1 and s2 comparison:+++++++++++++ " +s1.equalsIgnoreCase(s2));
         System.out.println(s1==s2);
-        System.out.println(s1.replace("l","o"));
+        System.out.println(s1.concat(s2));
         // System.out.println(s1.endsWith(" o"));
     }    
 }
