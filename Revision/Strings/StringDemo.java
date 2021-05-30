@@ -35,5 +35,11 @@ class StringObjects{
         System.out.println(delta);
         System.out.println(alpha.equals(gama));
         System.out.println(alpha==gama);
+        String s1="Alpha is o";
+        String s2="ALPHA is o";
+        System.out.println("\n s1 and s2 comparison:+++++++++++++ " +s1.equalsIgnoreCase(s2));
+        System.out.println(s1==s2);
+        System.out.println(s1.startsWith("lp"));
+        System.out.println(s1.endsWith(" o"));
     }    
 }
