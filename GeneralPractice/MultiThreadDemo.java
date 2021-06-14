@@ -1,73 +1,58 @@
 import java.util.ArrayList;
 
 class ThreadForPrimes extends Thread{
-    ArrayList <Integer> l1 = new ArrayList();
-    public ThreadForPrimes(ArrayList l){
-        this.l1=l;
-    }
     public void run(){
-        int low = 1, high = 100000;
-        while (low < high) {
-            boolean flag = false;
-            for(int i = 2; i <= low/2; ++i) {
-                if(low % i == 0) {
-                    flag = true;
-                    break;
+        // static void prime_N(int N){
+            int N = 99999999;
+            // prime_N(N);
+            int x, y, flg;
+            System.out.println("All the Prime numbers within 1 and " + N + " are:");
+            for (x = 1; x <= N; x++) {
+                if (x == 1 || x == 0)
+                    continue;
+                flg = 1; 
+                for (y = 2; y <= x / 2; ++y) {
+                    if (x % y == 0) {
+                        flg = 0;
+                        break;
+                    }
                 }
+                if (flg == 1)
+                    System.out.println("Prime thread: "+x);
             }
-            if (!flag && low != 0 && low != 1)
-                l1.add(low);
-            ++low;
         }
-    }
-    public void display(){
-        for(int i=0; i < l1.size(); i++){
-            System.out.println("Prime: "+ l1.get(i)+" " );
-        }
-    }
 }
 
 class ThreadForFibonacci extends Thread{
-    ArrayList <Integer> l1 = new ArrayList();
-    public ThreadForFibonacci(ArrayList l){
-        this.l1=l;
-    }
     public void run(){
-        int max = 100000; 
-		 int first = 1;
-		 int next = 2;
-         int sum=first;
-	    while (sum<max){
-            l1.add(sum);
-            sum = first + next;
-            first = next;
-            next = sum;
-        }
-    }
-    public void display(){
-        for(int i=0; i < l1.size(); i++){
-            System.out.println("Fibonacci: "+ l1.get(i)+" " );
+    long n1=0,n2=1,n3,i,count=40;    
+    System.out.print(n1+" "+n2);//printing 0 and 1       
+    for(i=2;i<count;++i){//loop starts from 2 because 0 and 1 are already printed    
+        n3=n1+n2;    
+        System.out.println("Fibonacci Thread: "+ n3);    
+        n1=n2;    
+        n2=n3;
+        if(n3 / 10000000 > 1)
+            break;    
         }
     }
 }
 
 class MultiThreadDemo{
     public static void main(String [] ar){
-        ArrayList <Integer> a = new ArrayList();
-        ArrayList <Integer> b = new ArrayList();
-        ThreadForPrimes t1 = new ThreadForPrimes(a);
+        ThreadForPrimes t1 = new ThreadForPrimes();
         t1.start();
-        try{
-            t1.join();
-        }
-        catch(Exception e){}
-        t1.display();
-        ThreadForFibonacci t2 = new ThreadForFibonacci(b);
+        // try{
+        //     t1.join();
+        // }
+        // catch(Exception e){}
+        // t1.display();
+        ThreadForFibonacci t2 = new ThreadForFibonacci();
         t2.start();
-        try{
-            t2.join();
-        }
-        catch(Exception e){}
-        t2.display();       
+        // try{
+        //     t2.join();
+        // }
+        // catch(Exception e){}
+        // t2.display();       
     }
 }
